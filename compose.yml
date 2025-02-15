@@ -1,0 +1,42 @@
+services:
+  kawaiibot:
+    build:
+      context: ./kawaiibot/
+    env_file:
+      - ./kawaiibot/.env
+    ports:
+      - "5000:5000"
+    networks:
+      - kawaiibot_network
+  
+  ngrok:
+    env_file:
+      - ./ngrok/.env
+    image: ngrok/ngrok
+    command: http kawaiibot:5000
+    ports:
+      - "4040:4040"
+    networks:
+      - kawaiibot_network
+  
+  reactionbot:
+    build:
+      context: ./reactionbot/
+    env_file:
+      - ./reactionbot/.env
+    networks:
+      - kawaiibot_network
+  
+  userconfig:
+    build:
+      context: ./userconfig/
+    env_file:
+      - ./userconfig/.env
+    volumes:
+      - ./data/:/userconfig/data/
+    networks:
+      - kawaiibot_network
+
+networks:
+  kawaiibot_network:
+    driver: bridge
