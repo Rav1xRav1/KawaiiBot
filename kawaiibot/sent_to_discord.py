@@ -24,6 +24,7 @@ class Discord:
         # おすすめの転送または直貼りにURLコンテンツを送信する
         requests.post(self.url[sent_to], json.dumps(main_content), headers=headers)
 
+        # おすすめ行きでないならNoneを返す
         if sent_to != "OSUSUME":
             return None
 
