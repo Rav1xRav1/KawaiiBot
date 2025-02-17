@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import os
 import json
 import requests
 
@@ -43,7 +44,7 @@ class Discord:
     # 評価用のメッセージ送信をリクエストするメソッド
     def send_eval(self, content, user_id, user_name, user_icon):
         data = {
-            "channel_id": "1333781222047875102",  # 固定のチャンネルID
+            "channel_id": os.getenv("OSUSUME_CHANNEL_ID"),  # 固定のチャンネルID
             "content": content,
             "user_id": user_id,
             "user_name": user_name,
