@@ -54,7 +54,7 @@ async def on_message(message):  # メッセージを受信したときのイベ�
         return None
     
     # もし「おすすめ（直貼り）」チャンネルなら
-    if message.channel.id == 1334216616023687229:
+    if message.channel.id == os.getenv("OSUSUME_CHOKUHARI_CHANNEL_ID"):
         discord_channel_id = message.channel.id
         content = message.content
         discord_user_name = message.author.name
@@ -209,7 +209,7 @@ async def async_add_channel(line_user_id):
 # チャンネルを作成してコンテンツを送信する
 async def send_channel(content, channel_name, user_data):  # contributor: 投稿者の名前
     print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "send_channel : " + "新しい個人用チャンネルにコンテンツを送信します")
-    GUILD_ID = 1333468554582032527  # 使用しているサーバのID
+    GUILD_ID = os.getenv("GUILD_ID")  # 使用しているサーバのID
     guild = client.get_guild(GUILD_ID)  # ギルド情報を取得する
 
     # チャンネルが既に存在するか確認
