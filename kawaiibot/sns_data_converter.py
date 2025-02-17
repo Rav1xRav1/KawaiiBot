@@ -1,7 +1,7 @@
 from line_bot_base import LineBot
 from sent_to_discord import Discord
 from datetime import datetime
-import os, requests
+import os
 
 # 環境変数から設定を読み込み
 ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
@@ -17,6 +17,7 @@ class SharingBot(LineBot):
             JOINLINE="https://discord.com/api/webhooks/1334014871632740403/UfWoJccnAKJ-sg9lxGHGw6y8cVyfEG33BSQs6_7ritCOyhp9aGC1mp2Cez_pwpAiZmf-"
         )
 
+    # LINEBotからメッセージイベントを取得したら、Discordにメッセージを送信する
     def text_message(self, event):
         user_message = event.message.text
 
